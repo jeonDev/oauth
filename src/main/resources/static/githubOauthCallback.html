@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        const requestAccessToken = () => {
+            var xhr = new XMLHttpRequest() //xhr 생성
+
+            const uri = "/v1/oauth/github/callback" + window.location.search;
+
+            xhr.addEventListener("load", reqListener);
+            xhr.open("GET", uri);
+            xhr.send();
+        }
+
+        const reqListener = (e) => {
+            // TODO: acess Token 가져온 이후 처리
+            console.log(e.target.response);
+        }
+    </script>
+</head>
+<body>
+    <h1>
+        <button
+                onclick="requestAccessToken()"
+        >
+            Access Token Request
+        </button>
+    </h1>
+</body>
+</html>

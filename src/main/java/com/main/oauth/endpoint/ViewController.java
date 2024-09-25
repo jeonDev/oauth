@@ -10,4 +10,9 @@ public class ViewController {
     public String home() {
         return "/index.html";
     }
+
+    @GetMapping("/oauth/github/callback")
+    public String githubCallback() {
+        return "/githubOauthCallback.html";
+    }
 }

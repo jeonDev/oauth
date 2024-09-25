@@ -29,7 +29,6 @@ public class GithubOauthService implements OAuthClientService {
                 .clientId(githubKeyProperties.getClientId())
                 .clientSecret(githubKeyProperties.getClientSecret())
                 .code(code)
-                .redirectUri(githubKeyProperties.getRedirectUri())
                 .build();
 
         ResponseEntity<GithubAccessTokenResponse> responseEntity = githubWebClient.post()

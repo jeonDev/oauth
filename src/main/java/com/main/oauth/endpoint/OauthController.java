@@ -18,7 +18,7 @@ public class OauthController {
         this.githubOauthService = githubOauthService;
     }
 
-    @GetMapping("/oauth/github/callback")
+    @GetMapping("/v1/oauth/github/callback")
     public ResponseEntity<AccessTokenResponse> githubOauth(@RequestParam("code") String code) {
         log.info("callback code : {}", code);
 
