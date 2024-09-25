@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 public class GithubKeyProperties {
     @Value("${client_id}")
     private String clientId;
-    @Value("${client_secret_key}")
-    private String clientSecretKey;
+    @Value("${client_secret}")
+    private String clientSecret;
+    @Value("${redirect_uri}")
+    private String redirectUri;
 }

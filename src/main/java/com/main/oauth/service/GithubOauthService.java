@@ -1,8 +1,8 @@
 package com.main.oauth.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.main.oauth.config.properties.GithubKeyProperties;
 import com.main.oauth.service.dto.GithubAccessTokenRequest;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -25,12 +25,15 @@ public class GithubOauthService implements OAuthClientService {
 
         GithubAccessTokenRequest request = GithubAccessTokenRequest.builder()
                 .clientId(githubKeyProperties.getClientId())
-                .clientSecretKey(githubKeyProperties.getClientSecretKey())
+                .clientSecret(githubKeyProperties.getClientSecret())
                 .code(code)
+                .redirectUri(githubKeyProperties.getRedirectUri())
                 .build();
 
         ResponseEntity<String> responseEntity = githubWebClient.post()
                 .uri("/login/oauth/access_token")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
                 .bodyValue(request)
                 .retrieve()
                 .toEntity(String.class)
