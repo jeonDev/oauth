@@ -1,7 +1,9 @@
 package com.main.oauth.endpoint;
 
 import com.main.oauth.service.OAuthClientService;
+import com.main.oauth.service.dto.AccessTokenResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,11 +19,11 @@ public class OauthController {
     }
 
     @GetMapping("/oauth/github/callback")
-    public void githubOauth(@RequestParam("code") String code) {
+    public ResponseEntity<AccessTokenResponse> githubOauth(@RequestParam("code") String code) {
         log.info("callback code : {}", code);
 
-        String accessToken = githubOauthService.getAccessToken(code);
-        log.info(accessToken);
-        return;
+        AccessTokenResponse response = githubOauthService.getAccessToken(code);
+        log.info(response.getAccessToken());
+        return ResponseEntity.ok(response);
     }
 }

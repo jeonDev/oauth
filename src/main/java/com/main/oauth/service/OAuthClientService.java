@@ -1,6 +1,8 @@
 package com.main.oauth.service;
 
+import com.main.oauth.service.dto.AccessTokenResponse;
+
 public interface OAuthClientService {
 
-    String getAccessToken(String code);
+    AccessTokenResponse getAccessToken(String code);
 }

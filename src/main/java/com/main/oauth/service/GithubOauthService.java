@@ -1,7 +1,9 @@
 package com.main.oauth.service;
 
 import com.main.oauth.config.properties.GithubKeyProperties;
+import com.main.oauth.service.dto.AccessTokenResponse;
 import com.main.oauth.service.dto.GithubAccessTokenRequest;
+import com.main.oauth.service.dto.GithubAccessTokenResponse;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,7 +23,7 @@ public class GithubOauthService implements OAuthClientService {
     }
 
     @Override
-    public String getAccessToken(String code) {
+    public AccessTokenResponse getAccessToken(String code) {
 
         GithubAccessTokenRequest request = GithubAccessTokenRequest.builder()
                 .clientId(githubKeyProperties.getClientId())
@@ -30,13 +32,13 @@ public class GithubOauthService implements OAuthClientService {
                 .redirectUri(githubKeyProperties.getRedirectUri())
                 .build();
 
-        ResponseEntity<String> responseEntity = githubWebClient.post()
+        ResponseEntity<GithubAccessTokenResponse> responseEntity = githubWebClient.post()
                 .uri("/login/oauth/access_token")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
                 .bodyValue(request)
                 .retrieve()
-                .toEntity(String.class)
+                .toEntity(GithubAccessTokenResponse.class)
                 .block();
 
         assert responseEntity != null;
