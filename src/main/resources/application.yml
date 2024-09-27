@@ -1,0 +1,3 @@
+github:
+  oauth-access-token: https://github.com/login/oauth/access_token
+  oauth-api-user: https://api.github.com/user

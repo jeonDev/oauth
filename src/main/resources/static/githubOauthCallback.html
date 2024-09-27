@@ -15,8 +15,11 @@
         }
 
         const reqListener = (e) => {
-            // TODO: acess Token 가져온 이후 처리
             console.log(e.target.response);
+        }
+
+        const requestGetUserInfo = () => {
+            // TODO:
         }
     </script>
 </head>
@@ -26,6 +29,13 @@
                 onclick="requestAccessToken()"
         >
             Access Token Request
+        </button>
+    </h1>
+    <h1>
+        <button
+                onclick="requestGetUserInfo()"
+        >
+            User Info
         </button>
     </h1>
 </body>
