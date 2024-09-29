@@ -31,7 +31,7 @@ public class OauthController {
     }
 
     @GetMapping("/v1/oauth/github/userInfo")
-    public ResponseEntity<OAuthUser> getGithubOAuthUserInfo(@RequestHeader("authorization") String authorization) {
+    public ResponseEntity<OAuthUser> getGithubOAuthUserInfo(@RequestHeader("Authorization") String authorization) {
         log.info("Github OAuth Authorization : {}", authorization);
 
         OAuthUser response = githubOauthService.getUserInfo(authorization);

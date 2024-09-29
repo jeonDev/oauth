@@ -15,11 +15,23 @@
         }
 
         const reqListener = (e) => {
-            console.log(e.target.response);
+            const response = JSON.parse(e.target.response);
+            sessionStorage.setItem("Authorization", response.token_type + " " + response.access_token)
         }
 
         const requestGetUserInfo = () => {
-            // TODO:
+            var xhr = new XMLHttpRequest() //xhr 생성
+
+            const uri = "/v1/oauth/github/userInfo";
+
+            xhr.addEventListener("load", userInfoListener);
+            xhr.open("GET", uri);
+            xhr.setRequestHeader("Authorization", sessionStorage.getItem("Authorization"));
+            xhr.send();
+        }
+
+        const userInfoListener = (e) => {
+            console.log(e.target.response);
         }
     </script>
 </head>
